@@ -1,0 +1,13 @@
+---
+  fullname: Quickstart notebook for Jupyter Base Image
+
+  branch: develop
+
+  description: |-
+    A simple notebook to present the basic usage of https://github.com/ebpro/jupyter-base/
+
+  build: |-
+    ## Building and installation instructions
+
+  documentation: |-
+    ## Documentation
