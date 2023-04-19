@@ -18,5 +18,4 @@ docker run --rm \
 	start-notebook.sh --notebook-dir=/home/jovyan/notebooks/
 
 
-
 #  --volume /var/run/docker.sock:/var/run/docker.sock \
