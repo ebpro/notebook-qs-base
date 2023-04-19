@@ -1,0 +1,25 @@
+<!---
+This file was generated from `meta.yml`, please do not edit manually.
+Follow the instructions on https://github.com/coq-community/templates to regenerate.
+--->
+# {{& fullname }}
+
+{{# action }}
+[![Docker CI][docker-action-shield]][docker-action-link]
+{{/ action }}
+
+{{# action }}
+[docker-action-shield]: https://github.com/{{ organization }}/{{ shortname }}/workflows/Docker%20CI/badge.svg?branch={{branch}}{{^branch}}develop{{/branch}}
+[docker-action-link]: https://github.com/{{ organization }}/{{ shortname }}/actions?query=workflow:"CI"
+{{/ action }}
+
+{{& description }}
+
+{{# license }}
+- License: [{{& fullname }}]({{ file }}{{^ file }}LICENSE{{/ file }})
+{{/ license }}
+
+{{& build }}{{^ build }}## Building and installation instructions
+
+
+{{& documentation }}
