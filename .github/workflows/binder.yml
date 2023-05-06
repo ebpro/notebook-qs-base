@@ -1,0 +1,35 @@
+name: Binder
+
+on:
+    workflow_dispatch:  
+    push:
+      branches:
+        - 'releases/v*'
+        - 'develop'
+      tags:
+        - 'v*.*.*'
+  
+env:
+    MSTEAMS_WEBHOOK: ${{ secrets.MSTEAMS_WEBHOOK }}      
+          
+concurrency:
+    group: ${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+  Create-Binder-Badge:
+    runs-on: ubuntu-latest
+    steps:
+    - name: cache binder build on mybinder.org
+      uses: jupyterhub/repo2docker-action@master
+      with:
+        NO_PUSH: true
+        MYBINDERORG_TAG: ${{ env.GITHUB_REF_NAME }}
+    - name: Microsoft Teams Notification
+      uses: skitionek/notify-microsoft-teams@master
+      if: success()
+      with:
+        webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+        overwrite: "{title: `[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/${context.repo.owner}/${context.repo.repo}/${BRANCH_NAME}) :point_left: Launch a binder notebook on this branch`}"          
+      env:
+        BRANCH_NAME: ${{ env.GITHUB_REF_NAME }}
