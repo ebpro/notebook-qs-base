@@ -7,13 +7,12 @@ IMAGE_NAME=jupyter-base
 IMAGE_TAG=develop
 
 
-docker run --rm \
+docker run --rm -it\
   --name ${IMAGE_NAME}-${PWD##*/} \
   --user root \
-  --volume ${PWD}:/home/jovyan/notebooks/ \
-  --volume ${WORK_DIR}:/home/jovyan/works/ \
+  --volume JUPYTER_WORKDIR:/home/jovyan/work/ \
+  --volume ${PWD}:/home/jovyan/work/notebooks/ \
   --publish 8888:8888 \
-  --env NB_UID=$UID \
   ${IMAGE_REPO}/${IMAGE_NAME}:${IMAGE_TAG} \
 	start-notebook.sh --notebook-dir=/home/jovyan/notebooks/
 
