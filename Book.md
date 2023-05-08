@@ -1,1 +1,1 @@
-# A quickstart for a Jupyter based teaching architecture
+# My Book
