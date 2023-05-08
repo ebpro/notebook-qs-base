@@ -11,10 +11,8 @@ docker run --rm -it\
   --name ${IMAGE_NAME}-${PWD##*/} \
   --user root \
   --volume JUPYTER_WORKDIR:/home/jovyan/work/ \
-  --volume ${PWD}:/home/jovyan/work/notebooks/ \
+  --volume ${PWD}:/home/jovyan/work/local/ \
   --publish 8888:8888 \
-  ${IMAGE_REPO}/${IMAGE_NAME}:${IMAGE_TAG} \
-	start-notebook.sh --notebook-dir=/home/jovyan/notebooks/
-
+  ${IMAGE_REPO}/${IMAGE_NAME}:${IMAGE_TAG}
 
 #  --volume /var/run/docker.sock:/var/run/docker.sock \
