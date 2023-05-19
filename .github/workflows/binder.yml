@@ -29,7 +29,10 @@ jobs:
       uses: skitionek/notify-microsoft-teams@master
       if: success()
       with:
-        webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
-        overwrite: "{title: `[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/${context.repo.owner}/${context.repo.repo}/${BRANCH_NAME}) :point_left: Launch a binder notebook on this branch`}"          
+          needs: ${{ toJson(needs) }}
+          job: ${{ toJson(job) }}
+          steps: ${{ toJson(steps) }}
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+          overwrite: "{title: `https://mybinder.org/v2/gh/${context.repo.owner}/${context.repo.repo}/${BRANCH_NAME}}"
       env:
         BRANCH_NAME: ${{ env.GITHUB_REF_NAME }}
