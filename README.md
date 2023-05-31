@@ -1,16 +1,13 @@
 # notebook-qs-base
 
-A notebook to present a precofigured Jupyter image for bachelor of science teaching (Python, LaTeX and Git).
+A notebook to present a preconfigured Jupyter image for Bachelor of Sciences lectures (Python, LaTeX, Git and VScode).
 
 ## Usage
-Clone this repository, cd in it and launch the image in a container (see https://github.com/ebpro/jupyter-base for détails). 
+Docker is neeeded. 
 
-```bash
-docker run --rm --name jupyter-base-${PWD##*/} \
-  --user root
-  --volume $PWD:/home/jovyan/work/${PWD##*/} \
-  --volume /var/run/docker.sock:/var/run/docker.sock \
-  --publish 8888:8888 \
-  --env NB_UID=$UID \
-  brunoe/jupyter-base:develop start-notebook.sh --notebook-dir=work/${PWD##*/}
-```
+1. Clone this repository.
+2. cd in it.
+3. launch the image in a container by runnig `run.sh`.
+4. Open the quickstart notebook in in `local/00-quickstart.ipynb`.
+
+See https://github.com/ebpro/jupyter-base for details on other configurations. 
